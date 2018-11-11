@@ -16,7 +16,7 @@ import org.testfx.framework.junit5.Start;
 @ExtendWith(ApplicationExtension.class)
 class MainTest {
 
-    private Label display;
+   private Label display;
 
     @Start
     public void start (Stage stage) throws Exception {
