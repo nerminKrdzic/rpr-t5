@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -29,14 +30,14 @@ class MainTest {
     @Test
     public void startWithZero (FxRobot robot) {
         display = robot.lookup("#display").queryAs(Label.class);
-        assertEquals("0", display.getText());
+        assertEquals("0.0", display.getText());
     }
 
     @Test
     public void numberOne (FxRobot robot) {
         display = robot.lookup("#display").queryAs(Label.class);
         robot.clickOn("#btn1");
-        assertEquals("1", display.getText());
+        assertEquals("1.0", display.getText());
     }
 
     @Test
@@ -45,7 +46,7 @@ class MainTest {
         robot.clickOn("#btn1");
         robot.clickOn("#btn2");
         robot.clickOn("#btn3");
-        assertEquals("123", display.getText());
+        assertEquals("123.0", display.getText());
     }
 
     @Test
@@ -58,7 +59,7 @@ class MainTest {
         robot.clickOn("#btn4");
         robot.clickOn("#btn5");
         robot.clickOn("#btn6");
-        assertEquals("456", display.getText());
+        assertEquals("456.0", display.getText());
     }
 
     @Test
@@ -94,7 +95,7 @@ class MainTest {
         display = robot.lookup("#display").queryAs(Label.class);
         robot.clickOn("#btn0");
         robot.clickOn("#btn0");
-        assertEquals("0", display.getText());
+        assertEquals("0.0", display.getText());
     }
 
     @Test
@@ -104,6 +105,50 @@ class MainTest {
         robot.clickOn("#btn0");
         robot.clickOn("#btn1");
         robot.clickOn("#btn0");
-        assertEquals("10", display.getText());
+        assertEquals("10.0", display.getText());
     }
+
+    @Test
+    public void divideButton(FxRobot robot){
+        display = robot.lookup("#display").queryAs(Label.class);
+        robot.clickOn("#btn0");
+        robot.clickOn("#btn0");
+        robot.clickOn("#btn1");
+        robot.clickOn("#btn0");
+        robot.clickOn("#divideBtn");
+        robot.clickOn("#btn2");
+        robot.clickOn("#equalsBtn");
+        assertEquals("5.0", display.getText());
+    }
+
+    @Test
+    public void mixedOperationsButton(FxRobot robot){
+        display = robot.lookup("#display").queryAs(Label.class);
+        robot.clickOn("#btn1");
+        robot.clickOn("#btn0");
+        robot.clickOn("#btn0");
+        robot.clickOn("#moduleBtn");
+        robot.clickOn("#btn3");
+        robot.clickOn("#btn0");
+        robot.clickOn("#equalsBtn");
+        assertEquals("10.0", display.getText());
+        robot.clickOn("#multiplyBtn");
+        robot.clickOn("#btn5");
+        robot.clickOn("#equalsBtn");
+        assertEquals("50.0", display.getText());
+    }
+
+    @Test
+    public void minusButton(FxRobot robot){
+        display = robot.lookup("#display").queryAs(Label.class);
+        robot.clickOn("#btn9");
+        robot.clickOn("#btn2");
+        robot.clickOn("#btn5");
+        robot.clickOn("#minusBtn");
+        robot.clickOn("#btn3");
+        robot.clickOn("#btn8");
+        robot.clickOn("#equalsBtn");
+        assertEquals("887.0", display.getText());
+    }
+
 }
